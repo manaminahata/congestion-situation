@@ -22,6 +22,8 @@ public class CongestionSituationDomain {
 	private Integer femaleALittleNumberOfPeople; 
 	// 女性用の混雑している人数
 	private Integer femaleCongestionNumberOfPeople;
+	// 各施設のURL
+	private String url;
 	
 	// 下記でgetter/setterを定義
 	public Integer getId() {
@@ -72,6 +74,12 @@ public class CongestionSituationDomain {
 	public void setFemaleCongestionNumberOfPeople(Integer femaleCongestionNumberOfPeople) {
 		this.femaleCongestionNumberOfPeople = femaleCongestionNumberOfPeople;
 	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
 	
 	@Override
 	public String toString() {
@@ -80,6 +88,9 @@ public class CongestionSituationDomain {
 				+ ", maleCongestionNumberOfPeople=" + maleCongestionNumberOfPeople
 				+ ", femaleComfortableNumberOfPeople=" + femaleComfortableNumberOfPeople
 				+ ", femaleALittleNumberOfPeople=" + femaleALittleNumberOfPeople + ", femaleCongestionNumberOfPeople="
-				+ femaleCongestionNumberOfPeople + "]";
+				+ femaleCongestionNumberOfPeople + ", url=" + url + "]";
 	}
+	
+	
+	
 }
