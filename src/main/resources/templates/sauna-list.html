@@ -6,8 +6,25 @@
 </head>
 <body>
 <h1>サウナ施設混雑状況</h1>
-<span th:each="domain:${domainList}">
-	<span th:text="${domain.name}">ダミー</span><br>
-</span>
+<table border="1">
+<thead>
+	<tr>
+		<th>施設名</th>
+		<th>男湯の混雑状況</th>
+		<th>女湯の混雑状況</th>
+		<th>施設詳細</th>
+	</tr>
+</thead>
+<tbody>
+<tr th:each="domain:${domainList}">
+	<td th:text="${domain.name}">施設名</td>
+	<td>ダミー</td>
+	<td>ダミー</td>
+	<td><a th:href="${domain.url}">詳細はこちら</a></td>
+</tr>
+</tbody>
+</table>
+管理者ログインはこちら
+<a href="login.html">こちら</a>
 </body>
 </html>
