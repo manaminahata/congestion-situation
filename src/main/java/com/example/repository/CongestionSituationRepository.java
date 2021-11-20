@@ -71,15 +71,15 @@ public class CongestionSituationRepository {
 		if (domain.getId() == null) {
 			// 下記にて施設を追加する
 			String insertSql = "INSERT INTO sauna_list (name, male_comfortable_number_of_people, male_a_little_number_of_people,"
-					+ " male_congestion_number_of_people, female_comfortable_number_of_people, female_a_little_number_of_people, female_congestion_number_of_people)"
+					+ " male_congestion_number_of_people, female_comfortable_number_of_people, female_a_little_number_of_people, female_congestion_number_of_people, url)"
 					+ "　VALUES (:name, :male_comfortable_number_of_people, :male_a_little_number_of_people,\"\n"
-					+ "				+ \" :male_congestion_number_of_people, :female_comfortable_number_of_people, :female_a_little_number_of_people, :female_congestion_number_of_people)";
+					+ "				+ \" :male_congestion_number_of_people, :female_comfortable_number_of_people, :female_a_little_number_of_people, :female_congestion_number_of_people, :url)";
 			template.update(insertSql, param);
 		} else {
 			// 下記にて施設を更新する
 			String updateSql = "UPDATE sauna_list SET name=:name, male_comfortable_number_of_people=:male_comfortable_number_of_people, male_a_little_number_of_people=:male_a_little_number_of_people,"
 					+ " male_congestion_number_of_people=:male_congestion_number_of_people, female_comfortable_number_of_people=:female_comfortable_number_of_people, "
-					+ "　female_a_little_number_of_people=:female_a_little_number_of_people, female_congestion_number_of_people=:female_congestion_number_of_people) WHERE id=:id";
+					+ "　female_a_little_number_of_people=:female_a_little_number_of_people, female_congestion_number_of_people=:female_congestion_number_of_people, url=:url) WHERE id=:id";
 			template.update(updateSql, param);
 		}
 		return domain;
