@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -55,4 +56,33 @@ public class CongestionSituationRepository {
 		CongestionSituationDomain domain = template.queryForObject(sql, param, CONGESTION_SITUATION_DOMAIN_ROW_MAPPER);
 		return domain;
 	}
+	
+	
+	/**
+	 * idがnullであればinsert、idがnullでなければupdateするメソッドを定義
+	 * @param domain
+	 * @return　idがnullの場合、施設を追加する。idがnull出ない場合、既にあるデータを更新する。
+	 * 
+	 */
+	public CongestionSituationDomain save(CongestionSituationDomain domain) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource("domain");
+		
+		if (domain.getId() == null) {
+			// 下記にて施設を追加する
+			String insertSql = "INSERT INTO sauna_list (name, male_comfortable_number_of_people, male_a_little_number_of_people,"
+					+ " male_congestion_number_of_people, female_comfortable_number_of_people, female_a_little_number_of_people, female_congestion_number_of_people)"
+					+ "　VALUES (:name, :male_comfortable_number_of_people, :male_a_little_number_of_people,\"\n"
+					+ "				+ \" :male_congestion_number_of_people, :female_comfortable_number_of_people, :female_a_little_number_of_people, :female_congestion_number_of_people)";
+			template.update(insertSql, param);
+		} else {
+			// 下記にて施設を更新する
+			String updateSql = "UPDATE sauna_list SET name=:name, male_comfortable_number_of_people=:male_comfortable_number_of_people, male_a_little_number_of_people=:male_a_little_number_of_people,"
+					+ " male_congestion_number_of_people=:male_congestion_number_of_people, female_comfortable_number_of_people=:female_comfortable_number_of_people, "
+					+ "　female_a_little_number_of_people=:female_a_little_number_of_people, female_congestion_number_of_people=:female_congestion_number_of_people) WHERE id=:id";
+			template.update(updateSql, param);
+		}
+		return domain;
+	}
+	
+	
 }
