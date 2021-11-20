@@ -30,8 +30,8 @@ public class CongestionSituationController {
 	 */
 	@RequestMapping("")
 	public String showList(Model model) {
-		List<CongestionSituationDomain> domain =  service.showList();
-		model.addAttribute("domain", domain);
+		List<CongestionSituationDomain> domainList =  service.showList();
+		model.addAttribute("domainList", domainList);
 		return "sauna-list";
 	}
 }
