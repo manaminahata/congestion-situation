@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>サウナ施設一覧</title>
+</head>
+<body>
+<h1>サウナ施設混雑状況</h1>
+<span th:each="domain:${domainList}">
+	<span th:text="${domain.name}">ダミー</span><br>
+</span>
+</body>
+</html>
