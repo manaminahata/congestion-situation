@@ -29,6 +29,7 @@ public class CongestionSituationRepository {
 		domain.setFemaleComfortableNumberOfPeople(rs.getInt("female_comfortable_number_of_people"));
 		domain.setFemaleALittleNumberOfPeople(rs.getInt("female_a_little_number_of_people"));
 		domain.setFemaleCongestionNumberOfPeople(rs.getInt("female_congestion_number_of_people"));
+		domain.setUrl(rs.getString("url"));
 		return domain;
 	};
 	
