@@ -10,6 +10,10 @@ public class CongestionSituationDomain {
 	private Integer id;
 	// 施設名
 	private String name;
+	// メールアドレス
+	private String email;
+	// パスワード
+	private String password;
 	// 男性用の快適に過ごせる人数
 	private Integer maleComfortableNumberOfPeople;
 	// 男性用のやや混雑している人数
@@ -37,6 +41,18 @@ public class CongestionSituationDomain {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public Integer getMaleComfortableNumberOfPeople() {
 		return maleComfortableNumberOfPeople;
@@ -83,14 +99,11 @@ public class CongestionSituationDomain {
 	
 	@Override
 	public String toString() {
-		return "CongestionSituationDomain [id=" + id + ", name=" + name + ", maleComfortableNumberOfPeople="
-				+ maleComfortableNumberOfPeople + ", maleALittleNumberOfPeople=" + maleALittleNumberOfPeople
-				+ ", maleCongestionNumberOfPeople=" + maleCongestionNumberOfPeople
+		return "CongestionSituationDomain [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password
+				+ ", maleComfortableNumberOfPeople=" + maleComfortableNumberOfPeople + ", maleALittleNumberOfPeople="
+				+ maleALittleNumberOfPeople + ", maleCongestionNumberOfPeople=" + maleCongestionNumberOfPeople
 				+ ", femaleComfortableNumberOfPeople=" + femaleComfortableNumberOfPeople
 				+ ", femaleALittleNumberOfPeople=" + femaleALittleNumberOfPeople + ", femaleCongestionNumberOfPeople="
 				+ femaleCongestionNumberOfPeople + ", url=" + url + "]";
 	}
-	
-	
-	
 }
