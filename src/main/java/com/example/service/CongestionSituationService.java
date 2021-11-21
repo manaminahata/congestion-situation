@@ -22,5 +22,10 @@ public class CongestionSituationService {
 		return domainList;
 	}
 	
-	
-}
+	/**
+	 * 施設登録用のメソッド
+	 */
+	public void insert(CongestionSituationDomain domain) {
+		repository.save(domain);
+	}
+ }
