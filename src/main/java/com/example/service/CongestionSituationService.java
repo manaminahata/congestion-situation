@@ -26,6 +26,18 @@ public class CongestionSituationService {
 	 * 施設登録用のメソッド
 	 */
 	public void insert(CongestionSituationDomain domain) {
-		repository.save(domain);
+		domain = new CongestionSituationDomain();
+		repository.insert(domain);
+	}
+	
+	/**
+	 * ログイン用のメソッド
+	 * @param email
+	 * @param password
+	 * @return　メールアドレスとパスワードが一致した場合、次のページに進むことができる
+	 */
+	public CongestionSituationDomain searchForObject(String email, String password) {
+		CongestionSituationDomain domain = repository.findByEmailAndPassword(email, password);
+		return domain;
 	}
  }
