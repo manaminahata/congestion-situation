@@ -1,5 +1,7 @@
 package com.example.repository;
 
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.example.domain.CongestionSituationDomain;
+
 
 /**
  * DBアクセス用のリポジトリクラス
@@ -69,8 +72,12 @@ public class CongestionSituationRepository {
 	public CongestionSituationDomain findByEmailAndPassword(String email, String password) {
 		String sql = "SELECT * FROM sauna_list WHERE email=:email AND password=:password";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("email", email).addValue("password", password);
-		CongestionSituationDomain domain = template.queryForObject(sql, param, CONGESTION_SITUATION_DOMAIN_ROW_MAPPER);
-		return domain;
+		
+		List<CongestionSituationDomain> domainList = template.query(sql, param, CONGESTION_SITUATION_DOMAIN_ROW_MAPPER);
+		if (domainList.size() == 0) {
+			return null;
+		}
+		return domainList.get(0);
 	}
 	
 	/**
