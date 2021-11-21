@@ -5,18 +5,18 @@
 <title>新規施設登録ページ</title>
 </head>
 <body>
-<form th:action="@{/sauna-list/login}" method="post" th:object="${congestionSituationForm}">
+<form th:action="@{/sauna-list/addition-completed}" method="post" th:object="${congestionSituationForm}">
 <h1>新規施設登録</h1>
 施設名：<input type="text" name="name" th:value="*{name}"><br>
 メールアドレス：<input type="email" name="email" th:value="*{email}"><br>
 パスワード：<input type="password" name="password" th:value="*{password}"><br>
 施設詳細URL：<input type="text" name="url" th:value="*{url}"><br>
-【男性】快適に過ごせる人数：<input type="text" name="male_comfortable_number_of_people" th:value="*{maleComfortableNumberOfPeople}"><br>
-【男性】やや混雑気味な人数：<input type="text" name="male_a_little_number_of_people" th:value="*{maleALittleNumberOfPeople}"><br>
-【男性】混雑している人数：<input type="text" name="male_congestion_number_of_people" th:value="*{maleCongestionNumberOfPeople}"><br>
-【女性】快適に過ごせる人数：<input type="text" name="female_comfortable_number_of_people" th:value="*{femaleComfortableNumberOfPeople}"><br>
-【女性】やや混雑気味な人数：<input type="text" name="female_a_little_number_of_people" th:value="*{femaleALittleNumberOfPeople}"><br>
-【女性】混雑している人数：<input type="text" name="female_congestion_number_of_people" th:value="*{femaleCongestionNumberOfPeople}"><br>
+【男性】快適に過ごせる人数：<input type="text" name="maleComfortableNumberOfPeople" th:value="*{maleComfortableNumberOfPeople}"><br>
+【男性】やや混雑気味な人数：<input type="text" name="maleALittleNumberOfPeople" th:value="*{maleALittleNumberOfPeople}"><br>
+【男性】混雑している人数：<input type="text" name="maleCongestionNumberOfPeople" th:value="*{maleCongestionNumberOfPeople}"><br>
+【女性】快適に過ごせる人数：<input type="text" name="femaleComfortableNumberOfPeople" th:value="*{femaleComfortableNumberOfPeople}"><br>
+【女性】やや混雑気味な人数：<input type="text" name="femaleALittleNumberOfPeople" th:value="*{femaleALittleNumberOfPeople}"><br>
+【女性】混雑している人数：<input type="text" name="femaleCongestionNumberOfPeople" th:value="*{femaleCongestionNumberOfPeople}"><br>
 <button>登録</button>
 </form>
 </body>
