@@ -1,5 +1,6 @@
 package com.example.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.domain.CongestionSituationDomain;
 import com.example.form.CongestionSituationForm;
 import com.example.service.CongestionSituationService;
+
 
 @Controller
 @RequestMapping("/sauna-list")
@@ -36,14 +38,47 @@ public class CongestionSituationController {
 		return "sauna-list";
 	}
 	
+	///////////////////////////////////////////////////
+	//          　　　  ログイン設定　　　　　　　　　　　　//
+	///////////////////////////////////////////////////
+	
 	/**
 	 * 管理者ログイン用ページを表示させる
 	 * @return login.html
 	 */
-	@RequestMapping("/login")
-	public String login() {
+	@RequestMapping("/index")
+	public String index() {
 		return "login";
 	}
+	
+	/**
+	 * ログイン用のメソッド
+	 * @param email
+	 * @param password
+	 * @return　メールアドレスとパスワードが登録されたものと一致した場合は次の処理へ進める
+	 */
+	@RequestMapping("/number-management")
+	public String login(String email, String password, Model model) {
+		System.out.println(email);
+		System.out.println(password);
+		
+		
+		CongestionSituationDomain domain = service.searchForObject(email, password);
+		
+		
+		if (domain == null) {
+			model.addAttribute("errorMessage", "メールアドレスまたはパスワードが不正です。");
+			return index();
+		}
+		
+		model.addAttribute("domain", domain);
+		
+		return "number-management";
+	}
+	
+	///////////////////////////////////////////////////
+	//          　　　  施設の新規登録設定　　　　　　　　　//
+	///////////////////////////////////////////////////
 	
 	/**
 	 * 新規登録用のページを表示させる
@@ -63,6 +98,7 @@ public class CongestionSituationController {
 	 */
 	@RequestMapping("/addition-completed")
 	public String additionCompleted(CongestionSituationForm form, Model model) {
+		System.out.println(form);
 		CongestionSituationDomain domain = new CongestionSituationDomain();
 		BeanUtils.copyProperties(form, domain);
 		domain.setMaleComfortableNumberOfPeople(form.getIntMaleComfortableNumberOfPeople());
@@ -72,10 +108,13 @@ public class CongestionSituationController {
 		domain.setFemaleALittleNumberOfPeople(form.getIntFemaleALittleNumberOfPeople());
 		domain.setFemaleCongestionNumberOfPeople(form.getIntFemaleCongestionNumberOfPeople());
 		service.insert(domain);
-		return "redirect:login";
+		
+		return "addition-completed";
 	}
 	
-	
+	///////////////////////////////////////////////////
+	//       　　ログイン成功後混雑状況管理の設定　　　　　　//
+	///////////////////////////////////////////////////
 	
 	
 }
