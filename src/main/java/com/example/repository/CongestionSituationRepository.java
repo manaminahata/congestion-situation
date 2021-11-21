@@ -23,9 +23,11 @@ public class CongestionSituationRepository {
 		CongestionSituationDomain domain = new CongestionSituationDomain();
 		domain.setId(rs.getInt("id"));
 		domain.setName(rs.getString("name"));
+		domain.setEmail(rs.getString("email"));
+		domain.setPassword(rs.getString("password"));
 		domain.setMaleComfortableNumberOfPeople(rs.getInt("male_comfortable_number_of_people"));
 		domain.setMaleALittleNumberOfPeople(rs.getInt("male_a_little_number_of_people"));
-		domain.setFemaleCongestionNumberOfPeople(rs.getInt("male_congestion_number_of_people"));
+		domain.setMaleCongestionNumberOfPeople(rs.getInt("male_congestion_number_of_people"));
 		domain.setFemaleComfortableNumberOfPeople(rs.getInt("female_comfortable_number_of_people"));
 		domain.setFemaleALittleNumberOfPeople(rs.getInt("female_a_little_number_of_people"));
 		domain.setFemaleCongestionNumberOfPeople(rs.getInt("female_congestion_number_of_people"));
@@ -58,31 +60,46 @@ public class CongestionSituationRepository {
 		return domain;
 	}
 	
+	/**
+	 * ログイン時にメールアドレスとパスワードが一致しているか確認するためのメソッド
+	 * @param email
+	 * @param password
+	 * @return　メールアドレスとパスワードが一致した施設を取得する
+	 */
+	public CongestionSituationDomain findByEmailAndPassword(String email, String password) {
+		String sql = "SELECT * FROM sauna_list WHERE email=:email AND password=:password";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("email", email).addValue("password", password);
+		CongestionSituationDomain domain = template.queryForObject(sql, param, CONGESTION_SITUATION_DOMAIN_ROW_MAPPER);
+		return domain;
+	}
 	
 	/**
-	 * idがnullであればinsert、idがnullでなければupdateするメソッドを定義
+	 * データ更新用のメソッド
 	 * @param domain
-	 * @return　idがnullの場合、施設を追加する。idがnull出ない場合、既にあるデータを更新する。
+	 * @return　更新用のデータをDBに返す
 	 * 
 	 */
 	public CongestionSituationDomain save(CongestionSituationDomain domain) {
-		SqlParameterSource param = new BeanPropertySqlParameterSource("domain");
-		
-		if (domain.getId() == null) {
-			// 下記にて施設を追加する
-			String insertSql = "INSERT INTO sauna_list (name, male_comfortable_number_of_people, male_a_little_number_of_people,"
-					+ " male_congestion_number_of_people, female_comfortable_number_of_people, female_a_little_number_of_people, female_congestion_number_of_people, url)"
-					+ "　VALUES (:name, :male_comfortable_number_of_people, :male_a_little_number_of_people,\"\n"
-					+ "				+ \" :male_congestion_number_of_people, :female_comfortable_number_of_people, :female_a_little_number_of_people, :female_congestion_number_of_people, :url)";
-			template.update(insertSql, param);
-		} else {
-			// 下記にて施設を更新する
-			String updateSql = "UPDATE sauna_list SET name=:name, male_comfortable_number_of_people=:male_comfortable_number_of_people, male_a_little_number_of_people=:male_a_little_number_of_people,"
+		SqlParameterSource param = new BeanPropertySqlParameterSource(domain);
+		String updateSql = "UPDATE sauna_list SET name=:name, email=:email, password=:password, male_comfortable_number_of_people=:male_comfortable_number_of_people, male_a_little_number_of_people=:male_a_little_number_of_people,"
 					+ " male_congestion_number_of_people=:male_congestion_number_of_people, female_comfortable_number_of_people=:female_comfortable_number_of_people, "
 					+ "　female_a_little_number_of_people=:female_a_little_number_of_people, female_congestion_number_of_people=:female_congestion_number_of_people, url=:url) WHERE id=:id";
-			template.update(updateSql, param);
-		}
+		template.update(updateSql, param);
 		return domain;
+	}
+	
+	/**
+	 * 新規施設追加用メソッド
+	 * @param domain
+	 */
+	public void insert(CongestionSituationDomain domain) {
+		String insertSql = "INSERT INTO sauna_list (name, email, password, male_comfortable_number_of_people, male_a_little_number_of_people,"
+				+ " male_congestion_number_of_people, female_comfortable_number_of_people, female_a_little_number_of_people, female_congestion_number_of_people, url)"
+				+ "　VALUES (:name, :email, :password, :male_comfortable_number_of_people, :male_a_little_number_of_people,"
+				+ " :male_congestion_number_of_people, :female_comfortable_number_of_people, :female_a_little_number_of_people, :female_congestion_number_of_people, :url)";
+		SqlParameterSource param = new BeanPropertySqlParameterSource(domain);
+		template.update(insertSql, param);
+		
 	}
 	
 	
