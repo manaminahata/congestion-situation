@@ -34,4 +34,9 @@ public class CongestionSituationController {
 		model.addAttribute("domainList", domainList);
 		return "sauna-list";
 	}
+	
+	@RequestMapping("/login")
+	public String login() {
+		return "login";
+	}
 }
