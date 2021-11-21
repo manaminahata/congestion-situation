@@ -6,11 +6,11 @@
 </head>
 <body>
 <!-- ログイン後、管理者専用のサウナ利用者を登録できるページに移る -->
-<form>
+<form th:action="@{/sauna-list/number-management}" method="post">
 <h1>ログインページ</h1>
+<label th:text="${errorMessage}">エラー</label>
 メールアドレス：<input type="email" name="email"><br>
 パスワード：<input type="password" name="password"><br>
-確認用パスワード：<input type="password" name="password"><br>
 <button>ログイン</button>
 </form>
 </body>
