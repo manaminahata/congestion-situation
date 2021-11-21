@@ -1,5 +1,6 @@
 package com.example.form;
 
+
 /**
  * 登録フォーム(insert.html)を受け取るフォームクラス
  * @author manami
@@ -26,6 +27,8 @@ public class CongestionSituationForm {
 	private String femaleCongestionNumberOfPeople;
 	// 各施設のURL
 	private String url;
+	
+	
 	
 	// getter/setterを定義
 	public String getName() {
@@ -90,24 +93,24 @@ public class CongestionSituationForm {
 	}
 	
 	// String型からInteger型変換
-	public int getIntMaleComfortableNumberOfPeople() {
-		return Integer.parseInt(getMaleComfortableNumberOfPeople());
-	}
-	public int getIntMaleALittleNumberOfPeople() {
-		return Integer.parseInt(getMaleALittleNumberOfPeople());
-	}
-	public int getIntMaleCongestionNumberOfPeople() {
-		return Integer.parseInt(getMaleCongestionNumberOfPeople());
-	}
-	public int getIntFemaleComfortableNumberOfPeople() {
-		return Integer.parseInt(getFemaleCongestionNumberOfPeople());
-	}
-	public int getIntFemaleALittleNumberOfPeople() {
-		return Integer.parseInt(getFemaleALittleNumberOfPeople());
-	}
-	public int getIntFemaleCongestionNumberOfPeople() {
-		return Integer.parseInt(getFemaleCongestionNumberOfPeople());
-	}
+		public Integer getIntMaleComfortableNumberOfPeople() {
+			return Integer.parseInt(maleComfortableNumberOfPeople);
+		}
+		public Integer getIntMaleALittleNumberOfPeople() {
+			return Integer.parseInt(maleALittleNumberOfPeople);
+		}
+		public Integer getIntMaleCongestionNumberOfPeople() {
+			return Integer.parseInt(maleCongestionNumberOfPeople);
+		}
+		public Integer getIntFemaleComfortableNumberOfPeople() {
+			return Integer.parseInt(femaleComfortableNumberOfPeople);
+		}
+		public Integer getIntFemaleALittleNumberOfPeople() {
+			return Integer.parseInt(femaleALittleNumberOfPeople);
+		}
+		public Integer getIntFemaleCongestionNumberOfPeople() {
+			return Integer.parseInt(femaleCongestionNumberOfPeople);
+		}
 	
 	@Override
 	public String toString() {
@@ -117,5 +120,6 @@ public class CongestionSituationForm {
 				+ ", femaleComfortableNumberOfPeople=" + femaleComfortableNumberOfPeople
 				+ ", femaleALittleNumberOfPeople=" + femaleALittleNumberOfPeople + ", femaleCongestionNumberOfPeople="
 				+ femaleCongestionNumberOfPeople + ", url=" + url + "]";
-	} 
+	}
+
 }
