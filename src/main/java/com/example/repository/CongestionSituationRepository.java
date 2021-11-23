@@ -100,10 +100,17 @@ public class CongestionSituationRepository {
 	 * @param domain
 	 */
 	public void insert(CongestionSituationDomain domain) {
+//	String insertSql = "INSERT INTO sauna_list (name, email, password, male_comfortable_number_of_people, male_a_little_number_of_people,"//
+//				+ " male_congestion_number_of_people, female_comfortable_number_of_people, female_a_little_number_of_people, female_congestion_number_of_people, url)"
+//				+ "　VALUES (:name, :email, :password, :male_comfortable_number_of_people, :male_a_little_number_of_people,"
+//				+ " :male_congestion_number_of_people, :female_comfortable_number_of_people, :female_a_little_number_of_people, :female_congestion_number_of_people, :url)";
+		
 		String insertSql = "INSERT INTO sauna_list (name, email, password, male_comfortable_number_of_people, male_a_little_number_of_people,"
 				+ " male_congestion_number_of_people, female_comfortable_number_of_people, female_a_little_number_of_people, female_congestion_number_of_people, url)"
-				+ "　VALUES (:name, :email, :password, :male_comfortable_number_of_people, :male_a_little_number_of_people,"
-				+ " :male_congestion_number_of_people, :female_comfortable_number_of_people, :female_a_little_number_of_people, :female_congestion_number_of_people, :url)";
+				+ " VALUES (:name, :email, :password, :maleComfortableNumberOfPeople, :maleALittleNumberOfPeople,"
+				+ " :maleCongestionNumberOfPeople, :femaleComfortableNumberOfPeople, :femaleALittleNumberOfPeople, :femaleCongestionNumberOfPeople, :url)";
+		System.out.println("qwertyuiopdfghjkl");
+		System.out.println(domain);
 		SqlParameterSource param = new BeanPropertySqlParameterSource(domain);
 		template.update(insertSql, param);
 		
