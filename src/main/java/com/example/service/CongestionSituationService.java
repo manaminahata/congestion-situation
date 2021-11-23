@@ -26,7 +26,6 @@ public class CongestionSituationService {
 	 * 施設登録用のメソッド
 	 */
 	public void insert(CongestionSituationDomain domain) {
-		domain = new CongestionSituationDomain();
 		repository.insert(domain);
 	}
 	
