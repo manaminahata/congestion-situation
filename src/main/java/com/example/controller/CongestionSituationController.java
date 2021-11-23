@@ -26,6 +26,10 @@ public class CongestionSituationController {
 		return new CongestionSituationForm();
 	}
 	
+	///////////////////////////////////////////////////
+	//          　　　  施設一覧表示　　　　　　　　　　　　//
+	///////////////////////////////////////////////////
+	
 	/**
 	 * 施設一覧を表示させる
 	 * @param model
@@ -98,6 +102,7 @@ public class CongestionSituationController {
 	 */
 	@RequestMapping("/addition-completed")
 	public String additionCompleted(CongestionSituationForm form, Model model) {
+		System.out.println("qwertyuiasdfghjksdfghjksdfghjkl");
 		System.out.println(form);
 		CongestionSituationDomain domain = new CongestionSituationDomain();
 		BeanUtils.copyProperties(form, domain);
@@ -107,6 +112,11 @@ public class CongestionSituationController {
 		domain.setFemaleComfortableNumberOfPeople(form.getIntFemaleComfortableNumberOfPeople());
 		domain.setFemaleALittleNumberOfPeople(form.getIntFemaleALittleNumberOfPeople());
 		domain.setFemaleCongestionNumberOfPeople(form.getIntFemaleCongestionNumberOfPeople());
+		
+		System.out.println("qwertyuiasdfghjksdfghjksdfghjkl");
+		System.out.println(domain);
+				
+				
 		service.insert(domain);
 		
 		return "addition-completed";
